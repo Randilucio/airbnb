@@ -13,7 +13,7 @@ $orderBy = $allowedSort[$sort] ?? 'name';
 
 $lpage = 10;
 $page = max(1, intval($_GET['page'] ?? 1));
-$start = ($page - 1) * $perPage;
+$start = ($page - 1) * $lpage;
 
 $totalAirbnb = $pdo->query("SELECT COUNT(*) FROM listings")->fetchColumn();
 $totalUser = $pdo->query("SELECT COUNT(*) FROM user_listings")->fetchColumn();
