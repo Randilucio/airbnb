@@ -18,7 +18,6 @@ try {
 catch (Exception $e) {
     die("Erreur : " . $e->getMessage());
 }
-
 $sql = "INSERT INTO annonces (titre, description, type, adresse, prix, capacite, equipements, image_url)
         VALUES (:titre, :description, :type, :adresse, :prix ";
         $stmt = $pdo->prepare($sql);
