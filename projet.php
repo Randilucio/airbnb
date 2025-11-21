@@ -39,6 +39,7 @@ $userListings = $pdo->query("SELECT * FROM user_listings")->fetchAll(PDO::FETCH_
     <head>
         <meta charset="UTF-8">
         <title>Liste des annonces</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
 
