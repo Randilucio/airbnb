@@ -1,0 +1,60 @@
+<?php
+if (
+    !isset($_POST['titre'], $_POST['description'], $_POST['type'], 
+    $_POST['adresse'], $_POST['prix'], $_POST['capacite'], $_POST['image_url'])
+) {
+    die("Formulaire incomplet.");
+}
+$titre = htmlspecialchars($_POST['titre']);
+$description = htmlspecialchars($_POST['description']);
+$type = htmlspecialchars($_POST['type']);
+$adresse = htmlspecialchars($_POST['adresse']);
+$prix = (int) $_POST['prix'];
+
+try {
+    $pdo = new PDO("http://127.0.0.1:8080/index.php?route=/sql&pos=0&db=Airbnb&table=listings", "root", "");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} 
+catch (Exception $e) {
+    die("Erreur : " . $e->getMessage());
+}
+
+$sql = "INSERT INTO annonces (titre, description, type, adresse, prix, capacite, equipements, image_url)
+        VALUES (:titre, :description, :type, :adresse, :prix ";
+        $stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    ':titre' => $titre,
+    ':description' => $description,
+    ':type' => $type,
+    ':adresse' => $adresse,
+    ':prix' => $prix
+]); 
+echo "<h3>Annonce ajoutée avec succès !</h3>";
+?>
+
+<form action="traitement_ajout.php" method="POST">
+
+    <label>Titre :</label><br>
+    <input type="text" name="titre" required><br><br>
+
+    <label>Description :</label><br>
+    <textarea name="description" required></textarea><br><br>
+
+    <label>Type de logement :</label><br>
+    <select name="type" required>
+        <option value="Appartement">Appartement</option>
+        <option value="Maison">Maison</option>
+        <option value="Studio">Studio</option>
+        <option value="Chambre privée">Chambre privée</option>
+    </select><br><br>
+
+    <label>Adresse :</label><br>
+    <input type="text" name="adresse" required><br><br>
+
+    <label>Prix par nuit (€) :</label><br>
+    <input type="number" name="prix" required><br><br>
+
+    <button type="submit">Ajouter</button>
+
+</form>
