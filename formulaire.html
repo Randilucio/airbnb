@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une annonce</title>
+</head>
+<body>
+
+<h2>Ajouter une annonce</h2>
+
+<form action="ajouter.php" method="POST">
+
+    <label>Titre :</label><br>
+    <input type="text" name="titre" required><br><br>
+
+    <label>Description :</label><br>
+    <textarea name="description" required></textarea><br><br>
+
+    <label>Type de logement :</label><br>
+    <select name="type" required>
+        <option>Appartement</option>
+        <option>Maison</option>
+        <option>Studio</option>
+        <option>Chambre</option>
+    </select><br><br>
+
+    <label>Adresse :</label><br>
+    <input type="text" name="adresse" required><br><br>
+
+    <label>Prix (€/nuit) :</label><br>
+    <input type="number" name="prix" required><br><br>
+
+    <label>Capacité :</label><br>
+    <input type="number" name="capacite" required><br><br>
+
+    <label>Équipements (séparés par des virgules) :</label><br>
+    <input type="text" name="equipements"><br><br>
+
+    <label>Image (URL) :</label><br>
+    <input type="url" name="image_url" required><br><br>
+
+    <button type="submit">Ajouter</button>
+
+</form>
+
+</body>
+</html>
